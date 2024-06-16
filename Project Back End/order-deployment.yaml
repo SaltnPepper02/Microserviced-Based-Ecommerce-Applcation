@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: order
+  name: order
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: order
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.network/e-commercenew20-my-network: "true"
+        io.kompose.service: order
+    spec:
+      containers:
+        - env:
+            - name: CART_API_URL
+              value: cart:8005 # might change to cart service name cart:8005 redeploy plz
+            - name: MYSQL_DATABASE
+              value: ecommerce_fyp_order
+            - name: MYSQL_HOST
+              value: host.docker.internal
+            - name: MYSQL_PASSWORD
+              value: "12345"
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_USER
+              value: root
+            - name: USER_API_URL
+              value: user:8080
+          image: richardgsc/order:v1.1
+          name: order
+          ports:
+            - containerPort: 8002
+              #hostPort: 8002
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 300m
+            requests:
+              cpu: 150m
+      restartPolicy: Always
+status: {}

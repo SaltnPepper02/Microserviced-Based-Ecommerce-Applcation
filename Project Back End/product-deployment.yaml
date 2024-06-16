@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: product
+  name: product
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: product
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.network/e-commercenew20-my-network: "true"
+        io.kompose.service: product
+    spec:
+      containers:
+        - env:
+            - name: MYSQL_DATABASE
+              value: ecommerce_fyp_product
+            - name: MYSQL_HOST
+              value: host.docker.internal
+            - name: MYSQL_PASSWORD
+              value: "12345"
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_USER
+              value: root
+          image: richardgsc/product:v1.1
+          name: product
+          ports:
+            - containerPort: 8001
+              # hostPort: 8001
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 300m
+              # memory: "512Mi"
+            requests:
+              cpu: 150m
+              # memory: "256Mi"
+      restartPolicy: Always
+status: {}

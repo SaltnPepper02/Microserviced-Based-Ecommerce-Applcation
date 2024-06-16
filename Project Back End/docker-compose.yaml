@@ -1,0 +1,70 @@
+version: '3'
+
+services:
+  user:
+    build:
+      context: ./user
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - MYSQL_HOST=host.docker.internal
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=ecommerce_fyp_new
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=12345
+    networks:
+      - my-network
+
+  product:
+    build:
+      context: ./productapi
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    environment:
+      - MYSQL_HOST=host.docker.internal
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=ecommerce_fyp_product
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=12345
+    networks:
+      - my-network
+
+  order:
+    build:
+      context: ./orderapi
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8002"
+    environment:
+      - MYSQL_HOST=host.docker.internal
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=ecommerce_fyp_order
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=12345
+      - CART_API_URL=e-commercenew20-cart-1:8005
+      - USER_API_URL=e-commercenew20-user-1:8080
+      
+    networks:
+      - my-network
+
+  cart:
+    build:
+      context: ./cartapi
+      dockerfile: Dockerfile
+    ports:
+      - "8005:8005"
+    environment:
+      - MYSQL_HOST=host.docker.internal
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=ecommerce_fyp_cart
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=12345
+      - PRODUCT_API_URL=e-commercenew20-product-1:8001
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
