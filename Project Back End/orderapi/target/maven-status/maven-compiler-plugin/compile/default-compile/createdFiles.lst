@@ -1,0 +1,15 @@
+com\ecommerce\orderapi\model\Address.class
+com\ecommerce\orderapi\service\OrderService.class
+com\ecommerce\orderapi\controller\OrderController.class
+com\ecommerce\orderapi\feignClient\CartClient.class
+com\ecommerce\orderapi\model\Product.class
+com\ecommerce\orderapi\repository\OrderRepository.class
+com\ecommerce\orderapi\model\User.class
+com\ecommerce\orderapi\functions\CartFunctions.class
+com\ecommerce\orderapi\feignClient\UserClient.class
+com\ecommerce\orderapi\model\Order.class
+com\ecommerce\orderapi\OrderapiApplication.class
+com\ecommerce\orderapi\model\OrderItem.class
+com\ecommerce\orderapi\exception\OrderException.class
+com\ecommerce\orderapi\functions\OrderFunctions.class
+com\ecommerce\orderapi\service\OrderServiceImplementation.class
