@@ -1,0 +1,6 @@
+.carousel-image {
+    display: block;
+    margin: 0 auto; /* Center the image horizontally */
+    max-width: 100%; /* Ensure the image doesn't exceed its container width */
+    height: auto; /* Maintain aspect ratio */
+}
