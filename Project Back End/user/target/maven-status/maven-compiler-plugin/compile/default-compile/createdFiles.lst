@@ -1,0 +1,13 @@
+com\ecommerce\user\services\UserService.class
+com\ecommerce\user\repository\UserRoleRepository.class
+com\ecommerce\user\request\LoginRequest.class
+com\ecommerce\user\controller\UserController.class
+com\ecommerce\user\repository\UserDetailRepository.class
+com\ecommerce\user\repository\UserRepository.class
+com\ecommerce\user\models\User.class
+com\ecommerce\user\models\UserDetails.class
+com\ecommerce\user\Exception\UserException.class
+com\ecommerce\user\UserApplication.class
+com\ecommerce\user\models\UserRole.class
+com\ecommerce\user\response\HeaderGenerator.class
+com\ecommerce\user\services\UserServiceImplementation.class
